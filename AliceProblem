@@ -1,0 +1,108 @@
+import java.util.*;
+import java.util.HashMap;
+
+public class HelloWorld {
+
+    int Src = 0; // No. of vertices
+    int Dst = 0; // No. of vertices
+
+    HelloWorld(int src, int dst) {
+        Src = src;
+        Dst = dst;
+    }
+
+    public int getSrc() {
+        return Src;
+    }
+
+    public int getDst() {
+        return Dst;
+    }
+
+    private static void printPath(List<Integer> path) {
+        String data[] = { "Home", "Market", "Park", "Med", "JuniorSchool", "University", "Lake", "BusTerminal" };
+        List<List<Integer>> g = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            g.add(new ArrayList<>());
+        }
+        g.get(0).add(1);
+        g.get(1).add(4);
+        g.get(1).add(6);
+        g.get(2).add(0);
+        g.get(2).add(3);
+        g.get(2).add(4);
+        g.get(3).add(5);
+        g.get(4).add(1);
+        g.get(4).add(7);
+        g.get(6).add(7);
+        g.get(7).add(5);
+        for (int i = 0; i < 3; i++) {
+            if (g.get(path.get(i)).contains(path.get(i + 1))) {
+                System.out.println("\n" + path.get(i) + " =>" + path.get(i + 1));
+            }
+        }
+    }
+
+    // Utility function to check if current
+    // vertex is already present in path
+    private static boolean isNotVisited(int x,
+            List<Integer> path) {
+        int size = path.size();
+        for (int i = 0; i < size; i++)
+            if (path.get(i) == x)
+                return false;
+
+        return true;
+    }
+
+    // Utility function for finding paths in graph
+    // from source to destination
+    private static void findpaths(HashMap<String, HelloWorld> g, int src, int dst, int busCount) {
+        for (int i = 0; i < busCount; i++) {
+
+        }
+
+    }
+
+    // Driver code
+    public static void main(String[] args) {
+        HashMap<String, HelloWorld> capitalCities = new HashMap<String, HelloWorld>();
+        capitalCities.put("BUS 1", new HelloWorld(0, 1));
+        capitalCities.put("BUS 2", new HelloWorld(1, 4));
+        capitalCities.put("BUS 3", new HelloWorld(1, 6));
+        capitalCities.put("BUS 4", new HelloWorld(2, 0));
+        capitalCities.put("BUS 5", new HelloWorld(2, 3));
+        capitalCities.put("BUS 6", new HelloWorld(2, 4));
+        capitalCities.put("BUS 7", new HelloWorld(3, 5));
+        capitalCities.put("BUS 8", new HelloWorld(4, 1));
+        capitalCities.put("BUS 9", new HelloWorld(4, 7));
+        capitalCities.put("BUS 10", new HelloWorld(6, 7));
+        capitalCities.put("BUS 11", new HelloWorld(7, 5));
+        System.out.println(capitalCities.get("BUS 11").getSrc());
+
+        List<List<Integer>> g = new ArrayList<>();
+        int v = 8;
+        for (int i = 0; i < 8; i++) {
+            g.add(new ArrayList<>());
+        }
+        g.get(0).add(1);
+        g.get(1).add(4);
+        g.get(1).add(6);
+        g.get(2).add(0);
+        g.get(2).add(3);
+        g.get(2).add(4);
+        g.get(3).add(5);
+        g.get(4).add(1);
+        g.get(4).add(7);
+        g.get(6).add(7);
+        g.get(7).add(5);
+
+        int src = 0, dst = 5;
+        System.out.println("path from src " + src +
+                " to dst " + dst + " are ");
+        // System.out.println(g);
+
+        // Function for finding the paths
+        findpaths(capitalCities, src, dst, v);
+    }
+}
